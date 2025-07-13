@@ -14,6 +14,20 @@ export function CreateTodo(){
         const dash=e.target.value;
         setDescription(dash);
      }} />
-     <button></button>
+     <button onClick={
+      fetch("http://localhost:3000/submit",{
+         method:"POST",
+         headers:{
+            "Content-Type": "application/json"
+         },
+         body:JSON.stringify({
+            title:title,
+            description:description
+         })
+         })
+         .then(function(){
+            alert('Todo added')
+         })
+     }>ADD TODO</button>
     </>
 }

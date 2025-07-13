@@ -1,7 +1,7 @@
 const express=require('express')
 const app=express()
-const database=require('./db')
-const struct=require('./db')
+const database=require('./db/Mongodb')
+const struct=require('./db/zod')
 app.use(express.json())
 app.post('/submit',async (req,res)=>{
     const {title,description,completed}=req.body;
