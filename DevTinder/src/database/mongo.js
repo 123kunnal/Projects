@@ -38,4 +38,19 @@ const userSchema = new mongoose.Schema({
 // ✅ Correct model creation
 const User = mongoose.model("User", userSchema);
 
+
+userSchema.methods.getJWT=function(){
+  const user=this;
+     const token=jwt.sign({_id:this._id},process.env.JWT_SECRET,
+{
+        expiresIn:"7d"
+      });
+      return token;
+}
+
+userSchema.methods.encrypt=function(){
+  const user=this;
+    const isPasswordValid= bcrypt.compare(inputPassword, user.password);
+    return isPasswordValid;
+}
 module.exports = User;
